@@ -26,8 +26,8 @@ export const sendMessage = async (req, res) => {
 		if (newMessage) {
 			conversation.message.push(newMessage._id);
 		}  
-		console.log("senderId:", senderId);
-		console.log("receiverId:", receiverId);
+		// console.log("senderId:", senderId);
+		// console.log("receiverId:", receiverId);
 		
 		//  await conversation.save();
 		// await newMessage.save();
@@ -38,7 +38,7 @@ export const sendMessage = async (req, res) => {
 
 		await Promise.all([conversation.save(),newMessage.save()])
 
-		console.log("Saved conversation with message:", conversation);
+		// console.log("Saved conversation with message:", conversation);
 
 	
 		res.status(201).json(newMessage);
@@ -60,7 +60,7 @@ export const getMessage = async (req,res)=>{
 		}).populate("message")
 
 		if(!conversation){
-			return res.status().json([])
+			return res.status(200).json([])
 		}
 		
 		const message = conversation.message;

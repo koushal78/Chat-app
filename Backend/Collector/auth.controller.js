@@ -40,6 +40,7 @@ try {
             username:newuser.username,
             Profilepic:newuser.Profilepic
         })
+       
     }
     else{
         resp.status(400).json({error:"invalid user data"})
@@ -51,31 +52,38 @@ try {
     
 }
 }
-export const login = async (req,resp)=>{
-try {
- const {username,password} = req.body;
- const user = await User.findOne({username});
 
- const ispassword = await bcrypt.compare(password,user?.password || "")
-
- if(!user || !ispassword){
-    resp.status(400).json({error:"invalid user id "})
-
- }
-
- generatejsonwebtokensetcookie(user._id,resp);
- resp.status(201).json({
-    _id:user._id,
-    fullName:user.fullName,
-    username:user.username,
-    Profilepic:user.Profilepic
-})
-    
-} catch (error) {
-    console.log("error in login controller",error.message);
-    resp.status(500).json({error:"Internal server error fghj"})
-}
-}
+export const login = async (req, resp) => {
+    try {
+      const { username, password } = req.body;
+      const user = await User.findOne({ username });
+  
+      if (!user) {
+        return resp.status(400).json({ error: 'Invalid user ID' }); // Early return if user is not found
+      }
+  
+      const isPasswordValid = await bcrypt.compare(password, user.password || '');
+  
+      if (!isPasswordValid) {
+        return resp.status(400).json({ error: 'Invalid credentials' }); // Early return if password is invalid
+      }
+  
+      // Generate JWT and set cookie
+      generatejsonwebtokensetcookie(user._id, resp);
+  
+      // Send user information as response
+      resp.status(200).json({
+        _id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        profilePic: user.profilePic
+      });
+  
+    } catch (error) {
+      console.log('Error in login controller: ', error.message);
+      resp.status(500).json({ error: 'Internal server error' });
+    }
+  };
 export const logout = (req,resp)=>{
 try {
     resp.cookie("Jwt","",{maxAge:0})
