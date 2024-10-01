@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 const useGetMessage = () => {
   const [loading, setLoading] = useState(false);
-  const { message, setmessage, selectedConversation } = useConversaton();
+  const { messages, setmessage, selectedConversation } = useConversaton();
 
   useEffect(() => {
     const getMessage = async () => {
@@ -26,7 +26,7 @@ const useGetMessage = () => {
     if (selectedConversation?._id) getMessage();
   }, [selectedConversation?._id, setmessage]); // Corrected the dependency
 
-  return { loading, message };
+  return { loading, messages };
 };
 
 export default useGetMessage;

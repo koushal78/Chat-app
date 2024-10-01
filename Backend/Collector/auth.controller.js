@@ -28,9 +28,11 @@ try {
         fullName,username,password:Haspassword,
         gender,Profilepic : gender === "male" ?  boyProfilePic : girlProfilePic 
     })
+    console.log(newuser)
     if(newuser){
       
          generatejsonwebtokensetcookie(newuser._id,resp)
+
 
         await newuser.save();
         
@@ -76,7 +78,7 @@ export const login = async (req, resp) => {
         _id: user._id,
         fullName: user.fullName,
         username: user.username,
-        profilePic: user.profilePic
+        Profilepic:user.Profilepic,
       });
   
     } catch (error) {

@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser';
-import {app} from './socket/socket.js'
+import {app, server} from './socket/socket.js'
 dotenv.config();
 import authRoutes from './Routes/auth.route.js';
 import authmessage from './Routes/message.route.js';
@@ -23,7 +23,7 @@ app.get('/',(req,resp)=>{
     resp.send("hello world")
 })
 
-app.listen(Port,()=>{
+server.listen(Port,()=>{
     connectdb();
      
     console.log(`server is running on ${Port}  port`)}) 
