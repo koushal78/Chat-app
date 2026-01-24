@@ -4,8 +4,8 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon Backend/server.js",
-    "start":"node Backend/server.js",
-    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend " 
+    "start": "node Backend/server.js",
+    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend "
   },
   "type": "module",
   "keywords": [],
@@ -14,11 +14,15 @@
   "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.8.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
+    "emoji-picker-react": "^4.16.1",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.562.0",
     "mongoose": "^8.5.1",
+    "multer": "^2.0.2",
     "react-hot-toast": "^2.4.1",
     "socket.io": "^4.7.5"
   },

@@ -1,99 +1,163 @@
 import { Link } from "react-router-dom";
-import GenderCheckbox from './GenderCheckbox.jsx';
+import GenderCheckbox from "./GenderCheckbox.jsx";
 import { useState } from "react";
-import useSignup  from "../../Hooks/useSignup.js";
-
+import useSignup from "../../Hooks/useSignup.js";
 
 const SignUp = () => {
- 
-	
-	const [input,setinput] = useState({
-		fullName:"",
-		username:"",
-		password:"",
-		confirmPassword:"",
-		gender:''
-	})
-	// console.log(input)
-	const {loading,Signup}= useSignup();
-	
-	const handlecheckbox= (gender)=>{
-		setinput({...input,gender})
-	}
-	const handleInputsumbit= async (e)=>{
-		e.preventDefault();
-	      await	Signup(input)
-	}
+  const [input, setinput] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
 
-	return (
-		<div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-			<div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-				<h1 className='text-3xl font-semibold text-center text-gray-300'>
-					Sign Up <span className='text-blue-500'> ChatApp</span>
-				</h1>
+  const { loading, Signup } = useSignup();
 
-				<form onSubmit={handleInputsumbit}>
-					<div>
-						<label className='label p-2'>
-							<span className='text-base label-text'>Full Name</span>
-						</label>
-						<input type='text' placeholder='John Doe' className='w-full input input-bordered  h-10'
-						 value={input.fullName}
-						 onChange={(e)=>setinput({...input,fullName:e.target.value})}
-						
-						/>
-					</div>
+  const handlecheckbox = (gender) => {
+    setinput({ ...input, gender });
+  };
 
-					<div>
-						<label className='label p-2 '>
-							<span className='text-base label-text'>Username</span>
-						</label>
-						<input type='text' placeholder='johndoe' className='w-full input input-bordered h-10' 
-						 value={input.username}
-						 onChange={(e)=>setinput({...input,username:e.target.value})}
-						/>
-					</div>
+  const handleInputsumbit = async (e) => {
+    e.preventDefault();
+    await Signup(input);
+  };
 
-					<div>
-						<label className='label'>
-							<span className='text-base label-text'>Password</span>
-						</label>
-						<input
-							type='password'
-							placeholder='Enter Password'
-							className='w-full input input-bordered h-10'
-							value={input.password}
-							onChange={(e)=>setinput({...input,password:e.target.value})}
-						/>
-					</div>
+  return (
+    <div className="min-h-screen w-screen flex items-center justify-center 
+     px-4">
 
-					<div>
-						<label className='label'>
-							<span className='text-base label-text'>Confirm Password</span>
-						</label>
-						<input
-							type='password'
-							placeholder='Confirm Password'
-							className='w-full input input-bordered h-10'
-							value={input.confirmPassword}
-							onChange={(e)=>setinput({...input,confirmPassword:e.target.value})}
-						/>
-					</div>
+      {/* Card */}
+      <div className="w-full max-w-md rounded-2xl 
+        border border-white/10 bg-white/5 backdrop-blur-xl 
+        shadow-2xl p-8">
 
-					<GenderCheckbox oncheckboxChange={handlecheckbox} selectedGender={input.gender} />
+        {/* Header */}
+        <h1 className="text-3xl font-bold text-center text-white">
+          Create Account
+        </h1>
+        <p className="text-center text-gray-400 mt-2">
+          Join <span className="text-violet-400">ChatApp</span> today
+        </p>
 
-					<Link className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block' to={'/Login'}>
-						Already have an account?
-					</Link>
+        {/* Form */}
+        <form onSubmit={handleInputsumbit} className="mt-8 space-y-4">
 
-					<div>
-						<button type="submit" className='btn btn-block btn-sm mt-2 border border-slate-700' disabled={loading}>
-							{loading?<span className="loading loading-spinner"></span> : "Sign Up"}
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	);
+          {/* Full Name */}
+          <div>
+            <label className="block text-sm text-gray-300 mb-1">
+              Full Name
+            </label>
+            <input
+              type="text"
+              placeholder="Ravi kumar"
+              className="w-full px-4 py-2.5 rounded-lg 
+              bg-black/40 border border-white/10 text-white
+              placeholder-gray-500 focus:outline-none
+              focus:border-violet-500 focus:ring-1 focus:ring-violet-500
+              transition"
+              value={input.fullName}
+              onChange={(e) =>
+                setinput({ ...input, fullName: e.target.value })
+              }
+            />
+          </div>
+
+          {/* Username */}
+          <div>
+            <label className="block text-sm text-gray-300 mb-1">
+              Username
+            </label>
+            <input
+              type="text"
+              placeholder="Ravikumar"
+              className="w-full px-4 py-2.5 rounded-lg 
+              bg-black/40 border border-white/10 text-white
+              placeholder-gray-500 focus:outline-none
+              focus:border-violet-500 focus:ring-1 focus:ring-violet-500
+              transition"
+              value={input.username}
+              onChange={(e) =>
+                setinput({ ...input, username: e.target.value })
+              }
+            />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm text-gray-300 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="Enter password"
+              className="w-full px-4 py-2.5 rounded-lg 
+              bg-black/40 border border-white/10 text-white
+              placeholder-gray-500 focus:outline-none
+              focus:border-violet-500 focus:ring-1 focus:ring-violet-500
+              transition"
+              value={input.password}
+              onChange={(e) =>
+                setinput({ ...input, password: e.target.value })
+              }
+            />
+          </div>
+
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-sm text-gray-300 mb-1">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              placeholder="Confirm password"
+              className="w-full px-4 py-2.5 rounded-lg 
+              bg-black/40 border border-white/10 text-white
+              placeholder-gray-500 focus:outline-none
+              focus:border-violet-500 focus:ring-1 focus:ring-violet-500
+              transition"
+              value={input.confirmPassword}
+              onChange={(e) =>
+                setinput({ ...input, confirmPassword: e.target.value })
+              }
+            />
+          </div>
+
+          {/* Gender */}
+          <div className="pt-2">
+            <GenderCheckbox
+              oncheckboxChange={handlecheckbox}
+              selectedGender={input.gender}
+            />
+          </div>
+
+          {/* Login Link */}
+          <p className="text-sm text-gray-400 mt-2">
+            Already have an account?{" "}
+            <Link
+              to="/Login"
+              className="text-violet-400 hover:text-violet-300 hover:underline"
+            >
+              Login
+            </Link>
+          </p>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full mt-4 py-2.5 rounded-lg font-semibold text-white
+            bg-gradient-to-r from-violet-500 to-purple-600
+            hover:from-violet-600 hover:to-purple-700
+            disabled:opacity-60 disabled:cursor-not-allowed
+            transition-all"
+          >
+            {loading ? "Creating account..." : "Sign Up"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
+
 export default SignUp;

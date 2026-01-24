@@ -16,6 +16,18 @@ const massagemodel = new mongoose.Schema({
     message:{
         type:String,
         require:true
+    },
+    fileUrl:{
+        type:String,
+
+    },
+    fileType:{
+        type:String,
+
+    },
+    fileName:{
+        type:String
+
     }
 },{timestamps:true})
 

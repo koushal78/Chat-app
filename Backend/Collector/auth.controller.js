@@ -9,7 +9,7 @@ try {
 
     if(password !== confirmPassword){
         return resp.status(400).json({error:'Password not match'})
-    }
+    } 
     const user = await User.findOne({username})
     if(user){
         return resp.status(400).json({error:"User already exist "})
@@ -21,8 +21,8 @@ try {
     const Haspassword = await bcrypt.hash(password,salt)
 
     // https://avatar.iran.liara.run/username?username=Scott+Wilson?/
-    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`
-    const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`
+    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?${username}`
+    const girlProfilePic = `https://avatar.iran.liara.run/public/girl?${username}`
 
     const newuser =  new User({
         fullName,username,password:Haspassword,

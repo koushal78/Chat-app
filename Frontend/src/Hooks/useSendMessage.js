@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const useSendMessage = () => {
 const[loading,setloading] = useState(false);
 const{messages,setmessage,selectedConversation}= useConversaton()
-const sendMessage =async(message)=>{
+const sendMessage =async({message,fileUrl,fileType,fileName})=>{
     setloading(true)
     try {
         const res = await fetch(`/api/message/send/${selectedConversation._id}`,{
@@ -13,7 +13,12 @@ const sendMessage =async(message)=>{
             headers:{
                 'content-Type':'application/json',
             },
-            body:JSON.stringify({message}),
+            body:JSON.stringify({
+                message,
+                fileUrl,
+                fileType,
+                fileName
+            }),
             
         })  
         const data  = await res.json();

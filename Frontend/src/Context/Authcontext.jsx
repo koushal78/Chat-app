@@ -15,3 +15,6 @@ export const AuthContextProvider =({children})=>{
     return <authContext.Provider  value={{authUser,setauthUser}} >{children}</authContext.Provider>
 
 }
+
+
+//  all use first latter capital in provider name to avoid jsx error
