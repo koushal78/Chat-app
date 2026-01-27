@@ -18,7 +18,7 @@ function Conversation({conversation,emoji,lastIdx}) {
    >
    <div className={`avatar ${isOnline ? "online":""}`}>
   <div className="w-12 rounded-full">
-    <img src={conversation.Profilepic}/>
+    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${conversation.fullName}`}/>
   </div>
 </div>
 <div className="flex flex-col flex-1">

@@ -21,8 +21,8 @@ try {
     const Haspassword = await bcrypt.hash(password,salt)
 
     // https://avatar.iran.liara.run/username?username=Scott+Wilson?/
-    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?${username}`
-    const girlProfilePic = `https://avatar.iran.liara.run/public/girl?${username}`
+    const boyProfilePic = `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`
+    const girlProfilePic = `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`
 
     const newuser =  new User({
         fullName,username,password:Haspassword,
