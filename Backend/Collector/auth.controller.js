@@ -31,7 +31,7 @@ try {
     console.log(newuser)
     if(newuser){
       
-         generatejsonwebtokensetcookie(newuser._id,resp)
+        const token =  generatejsonwebtokensetcookie(newuser._id,resp)
 
 
         await newuser.save();
@@ -40,7 +40,8 @@ try {
             _id:newuser._id,
             fullName:newuser.fullName,
             username:newuser.username,
-            Profilepic:newuser.Profilepic
+            Profilepic:newuser.Profilepic,
+            token:token
         })
        
     }
@@ -71,7 +72,7 @@ export const login = async (req, resp) => {
       }
   
       // Generate JWT and set cookie
-      generatejsonwebtokensetcookie(user._id, resp);
+    const token  =   generatejsonwebtokensetcookie(user._id, resp);
   
       // Send user information as response
       resp.status(200).json({
@@ -79,6 +80,7 @@ export const login = async (req, resp) => {
         fullName: user.fullName,
         username: user.username,
         Profilepic:user.Profilepic,
+        token:token
       });
   
     } catch (error) {
